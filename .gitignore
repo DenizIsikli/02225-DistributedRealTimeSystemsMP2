@@ -1,6 +1,45 @@
-/src/__pycache__
-report/*
-*.pyc
-*.pyc
-*.pyc
-*.pyc
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.env/
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Project output / generated data / test examples
+output/
+results/
+test_examples/
+
+# Specific unwanted files
+output/automotive-utilDist/.DS_Store
+
+# Logs and temp files
+*.log
+*.tmp
+*.out
+
+# IDE / Editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Testing / coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Build / distribution
+build/
+dist/
+*.egg-info/
+
+# Metadata
+.Identifier
