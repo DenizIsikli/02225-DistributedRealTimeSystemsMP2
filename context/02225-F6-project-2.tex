@@ -1,0 +1,116 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{charter}
+\usepackage[danish,english]{babel}
+\usepackage{graphicx, float, varioref, fancyvrb, array, mathtools, algorithm, algpseudocode, enumitem, url}
+\usepackage[a4paper,margin=2cm]{geometry}
+
+\setlist{noitemsep, topsep=0pt}
+
+\begin{document}
+
+\title{\vspace{-50pt}02225 DRTS Mini-project 2 description}
+\author{}
+\date{}
+
+\maketitle
+
+\vspace{-20pt}
+This document describes the Mini-project 2 requirements for the 02225 Distributed Real-Time Systems (DRTS) course. The objective is to analyze the worst-case delays of periodic real-time streams in a Time-Sensitive Networking (TSN) context, specifically focusing on the Credit Based Shaper (CBS).
+
+\section{Project Requirements}
+
+The students are required to develop their own software to perform the project activities. Any programming language and libraries may be used for the implementation. Guidance on the use of Generative AI is provided under ``Content/Course information''.
+
+The project requirements are defined at a high level. 
+
+\begin{itemize}
+    \item Determine the worst-case delays (WCDs) of a set of periodic real-time streams considering TSN and the Credit Based Shaper (CBS).
+    \item Compare the calculated WCDs with response times observed during simulations.
+    \item Compare Strict Priority (SP) shaping with CBS.
+    \begin{itemize}
+        \item For SP, calculate the WCDs using standard Response Time Analysis (RTA).
+        \item Demonstrating the impact of the credit mechanism on preventing starvation of lower-priority queues is a key goal.
+    \end{itemize}
+\end{itemize}
+
+Consider a simplified network that uses a ``line topology'' (an end system connected to another end system via a few switches) with only two queues, covered by \cite{Cao2016-TightWorstcaseResponsetimea}. The students have the freedom to decide the comparison methodology between the simulation and analytical results, and the approach for comparing SP and CBS shapers. 
+
+\section{Resources}
+
+\subsection*{Comparison and Methodology}
+\begin{itemize}
+    \item The lecture slides and course reading list provide the necessary theoretical background and comparison strategies.    
+    \item ``Content/Mini-project-2'' contains suggestions for test cases and a test case generation tool.
+    \item The section ``What is a good project that will get a top grade?'' under ``Content/Course information'' on the course website discusses project evaluation criteria.
+\end{itemize}
+
+\subsection*{Theoretical References}
+The following materials provide the necessary background:
+
+\paragraph{Time-Sensitive Networking (TSN) and CBS}
+\begin{itemize}
+    \item {\em TSN for Dummies} (available in ``Content/week 4'').
+    \item Slides of the lectures on Time-Sensitive Networking (TSN) and Worst-case analysis for CBS in TSN (PDFs available in ``Content/week 4'').
+    \item Cao et al. \cite{Cao2016-IndependentTightWCRT} provides the method for calculating WCDs with CBS. Students will likely need this paper, which references \cite{Cao2016-TightWorstcaseResponsetimea}.
+\end{itemize}
+
+\paragraph{Real-Time Communication and SP}
+\begin{itemize}
+    \item Kopetz \cite{kopetz2011}, Chapter 7: Real-Time Communication (Sections 7.1, 7.2).
+    \item Slides of the lecture on Real-Time Networks.
+\end{itemize}
+
+\paragraph{Simulation}
+\begin{itemize}
+    \item Introduction to simulation and simulation slides (PDFs available in the Week 2 content tab).
+    \item Buttazzo \cite{buttazzo2024}, Section 13.5.3: Scheduling Simulators.
+\end{itemize}
+
+%\section{Potential Extensions}
+%Students may extend the mini-project by considering more general network topologies beyond the simple line topology. Additionally, the generalized analysis presented in \cite{Cao2018-IndependentWCRTAnalysis} offers a potential direction for advanced analysis.
+
+\section{Optional Extensions}
+\begin{itemize}
+
+\item \textbf{Generalized Analysis for Multiple Queues and Arbitrary Network Topologies:}
+The project considers on a simplified scenario with a limited number of queues and linear network topologies. One possible extension is to generalize both the analysis and the simulator to support an arbitrary number of AVB queues. This can be achieved by implementing the analysis described in \cite{Cao2018-IndependentWCRTAnalysis}, which extends the approach presented in \cite{Cao2016-IndependentTightWCRT} to an unspecified number of queues. Additionally, the analysis and simulator tools could be extended to support arbitrary network topologies instead of linear networks.
+
+\item \textbf{Strict Priority Scheduling Analysis and Comparison with CBS:}
+Another possible extension is to implement both simulation and Worst-Case Response Time Analysis (WCRTA) for networks where output ports use only \textit{Strict Priority (SP)} scheduling. The analysis of such systems can be derived from classical fixed-priority scheduling techniques such as Rate Monotonic analysis applied to the output ports of the network. The results obtained with SP (both analytical and simulated) can then be compared with those obtained using Credit-Based Shaping (CBS), highlighting the differences in response times, schedulability, and resource utilization.
+
+\end{itemize}
+
+\bibliographystyle{plain}
+\begin{thebibliography}{1}
+
+\bibitem{buttazzo2024}
+Giorgio Buttazzo.
+\newblock {Hard Real-Time Computing Systems: Predictable Scheduling Algorithms and Applications}.
+\newblock Springer, 2024.
+
+\bibitem{Cao2016-TightWorstcaseResponsetimea}
+Jingyue Cao, Pieter J.~L. Cuijpers, Reinder~J. Bril, and Johan~J. Lukkien.
+\newblock Tight worst-case response-time analysis for ethernet {{AVB}} using eligible intervals.
+\newblock In {\em 2016 {{IEEE World Conference}} on {{Factory Communication Systems}} ({{WFCS}})}, pages 1--8, May 2016.
+\newblock \url{doi:10.1109/WFCS.2016.7496507}.
+
+\bibitem{Cao2016-IndependentTightWCRT}
+Jingyue Cao, Pieter J.L. Cuijpers, Reinder~J. Bril, and Johan~J. Lukkien.
+\newblock Independent yet {{Tight WCRT Analysis}} for {{Individual Priority Classes}} in {{Ethernet AVB}}.
+\newblock In {\em Proceedings of the 24th {{International Conference}} on {{Real-Time Networks}} and {{Systems}}}, {{RTNS}} '16, pages 55--64, New York, NY, USA, October 2016. Association for Computing Machinery.
+\newblock \url{10.1145/2997465.2997493}.
+
+\bibitem{Cao2018-IndependentWCRTAnalysis}
+Jingyue Cao, Pieter J.~L. Cuijpers, Reinder~J. Bril, and Johan~J. Lukkien.
+\newblock Independent {{WCRT}} analysis for individual priority classes in {{Ethernet AVB}}.
+\newblock {\em Real-Time Systems}, 54(4):861--911, October 2018.
+\newblock \url{doi:10.1007/s11241-018-9321-z}.
+
+\bibitem{kopetz2011}
+Hermann Kopetz.
+\newblock {Real-Time Systems: Design Principles for Distributed Embedded Applications}.
+\newblock Springer, 2011.
+
+\end{thebibliography}
+
+\end{document}
